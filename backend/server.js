@@ -29,3 +29,9 @@ app.listen(PORT, () => {
 
 //Connecting to the database 
 connectDB();
+
+//import routes
+const authRoutes = require('./routes/authRoutes');
+
+//using routes
+app.use('/api/auth', authRoutes);
