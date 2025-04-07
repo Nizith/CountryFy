@@ -10,3 +10,5 @@ build/
 *.xl*
 *.jp*
 *.png
+
+.env
