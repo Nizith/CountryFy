@@ -3,14 +3,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import toast, { Toaster } from "react-hot-toast";
-import LoginBgImg from "../images/Gbobal_bg.avif";
+import LoginBgImg from "../../images/Global_bg.avif";
+import { api } from '../../api';
 
 export default function Login() {
 
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const [logindata, setlogindata] = useState({
-        username: "",
+        email: "",
         password: ""
     });
 
@@ -26,25 +27,29 @@ export default function Login() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${api}/login`, logindata);
+            const response = await axios.post(`${api}/auth/login`, logindata);
 
             toast.success("Login Successful!");
 
-            const { token, role } = response.data;
+            const { token, user } = response.data;
+            
+
+            console.log("The JWT token is: ", token);
+            console.log("The user data is: ", user);
 
             // Store the token and role in localStorage
             localStorage.setItem('token', token);
-            localStorage.setItem('role', role);
-            localStorage.setItem('username', logindata.username);
+            localStorage.setItem('role', user.role);
+            localStorage.setItem('email', user.email);
 
             // Redirect based on the role
             setTimeout(() => {
-                switch (role) {
+                switch (user.role) {
                     case "Admin":
                         navigate('/admindashboard');
                         break;
                     case "user":
-                        navigate('/mssdashboard')
+                        navigate('/userdashboard')
                         break;
                     default:
                         break;
@@ -84,9 +89,9 @@ export default function Login() {
                             <div className="my-10">
                                 <input
                                     type="text"
-                                    name="username"
-                                    id="username"
-                                    placeholder="Enter Username..."
+                                    name="email"
+                                    id="email"
+                                    placeholder="Enter Your Email..."
                                     onChange={handleLoginChange}
                                     className="block w-full mx-auto mt-2 h-12 outline-none border-2 border-gray-400 focus:border-[3px] focus:border-blue-600 rounded-lg  ps-5 text-bl2ck font-normal"
                                 />
@@ -120,8 +125,7 @@ export default function Login() {
                     </div>
                 </div>
                 <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-500">
-                    <p>You will be able to manage and view the contries in the portal</p>
-                    <p>Application Frameworks module project</p>
+                    <p>[2025/FEB] Y3S2 - Application Frameworks module project. </p>
                 </div>
             </div>
         </>

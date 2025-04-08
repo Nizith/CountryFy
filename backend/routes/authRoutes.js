@@ -3,7 +3,7 @@ const { register, login } = require('../controllers/authController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.post('/registration', register);
+router.post('/register', register);
 router.post('/login', login);
 
 // Protected route - only authenticated users
