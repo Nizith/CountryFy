@@ -35,5 +35,5 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 //using routes
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
+app.use('/country/auth', authRoutes);
+app.use('/country/user', userRoutes);

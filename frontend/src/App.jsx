@@ -1,9 +1,20 @@
 import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Login from "./components/Startup/Login"
+import SignUp from "./components/Startup/SignUp"
 
 function App() {
   return (
     <>
-      <h1 className="text-indigo-500">Welcome to the React App</h1>
+      <Router>
+        <Routes>
+
+          {/* First Pages */}
+          <Route path="/" element={<Login />} />
+          <Route path="/create-account" element={<SignUp />} />
+          
+        </Routes>
+    </Router>
     </>
   )
 }
