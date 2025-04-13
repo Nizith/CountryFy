@@ -11,15 +11,15 @@ export default function Footer() {
 
                 {/* Center: Navigation Links */}
                 <div className="flex space-x-4">
-                    <p className="text-indigo-600 hover:text-indigo-800 text-md">
+                    <p className="text-indigo-600 text-md">
                     SLIIT
                     </p>
                     <div className='border-l-2 border-gray-400'></div>
-                    <p className="text-indigo-600 hover:text-indigo-800 text-md">
+                    <p className="text-indigo-600 text-md">
                     Software Engineering
                     </p>
                     <div className='border-l-2 border-gray-400'></div>
-                    <p className="text-indigo-600 hover:text-indigo-800 text-md">
+                    <p className="text-indigo-600 text-md">
                     Y3S2
                     </p>
                 </div>
