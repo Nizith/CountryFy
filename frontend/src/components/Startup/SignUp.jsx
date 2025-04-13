@@ -5,9 +5,11 @@ import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import toast, { Toaster } from "react-hot-toast";
 import LoginBgImg from "../../images/Signup_bg.avif";
 import { api } from '../../api';
+import Loading from "../Specials/Loading";
 
 export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [SignupData, setSignupData] = useState({
         name: "",
@@ -34,6 +36,9 @@ export default function SignUp() {
     const SubmitRegistation = async (e) => {
         e.preventDefault();
 
+        //Ensure the loading function happens while the registration happens
+        setLoading(true);
+
         // Check if passwords match
         if (!passwordMatch) {
             toast.error("Passwords do not match!");
@@ -47,8 +52,6 @@ export default function SignUp() {
                 password: SignupData.password
             });
 
-            toast.success("Your account has been successfully created!");
-
             const { token, user } = response.data;
 
             // Store the token and role in localStorage
@@ -57,19 +60,25 @@ export default function SignUp() {
             localStorage.setItem('name', user.name);
             localStorage.setItem('email', user.email);
 
-            // Redirect based on the role
             setTimeout(() => {
-                switch (user.role) {
-                    case "Admin":
-                        navigate('/admindashboard');
-                        break;
-                    case "user":
-                        navigate('/userdashboard');
-                        break;
-                    default:
-                        break;
-                }
-            }, 1500);
+
+                //display the successfull message for account creation, as a toast message
+                toast.success("Your account created successfully!");
+
+                // Redirect based on the role
+                setTimeout(() => {
+                    switch (user.role) {
+                        case "Admin":
+                            navigate('/admin-dashboard');
+                            break;
+                        case "user":
+                            navigate('/user-content');
+                            break;
+                        default:
+                            break;
+                    }
+                }, 2000)
+            }, 1000);
 
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
@@ -148,9 +157,8 @@ export default function SignUp() {
                                     id="confirmPassword"
                                     placeholder="Confirm Your Password..."
                                     onChange={handleLoginChange}
-                                    className={`block w-full mx-auto mt-2 h-12 outline-none border-2 ${
-                                        passwordMatch ? "border-green-500 focus:border-green-500" : "border-gray-400 focus:border-red-500"
-                                    } focus:border-[3px] rounded-lg ps-5 text-bl2ck font-normal`}
+                                    className={`block w-full mx-auto mt-2 h-12 outline-none border-2 ${passwordMatch ? "border-green-500 focus:border-green-500" : "border-gray-400 focus:border-red-500"
+                                        } focus:border-[3px] rounded-lg ps-5 text-bl2ck font-normal`}
                                 />
                                 {passwordMatch && (
                                     <p className="text-green-500 text-sm mt-1">Passwords match!</p>
@@ -158,7 +166,11 @@ export default function SignUp() {
                             </div>
                             <div className="flex justify-center">
                                 <button className="w-full h-12 text-xl mt-5 py-2 px-10 rounded-lg text-white duration-300 bg-indigo-700 hover:ring-1 hover:bg-indigo-600 ring-indigo-700 font-bold font-serif">
-                                    Sign Up
+                                    {loading ? (
+                                        <div className="flex justify-center items-center">
+                                            <Loading />
+                                        </div>
+                                    ) : "Sign Up"}
                                 </button>
                             </div>
                             <p className="font-normal text-gray-600 flex justify-center items-center mt-1">Already have an Account?

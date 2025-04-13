@@ -7,7 +7,7 @@ router.post('/register', register);
 router.post('/login', login);
 
 // Protected route - only authenticated users
-router.get('/profile',
+router.get('/user-content',
     protect,
     (req, res) => {
         res.json({ message: 'Welcome to user profile' });

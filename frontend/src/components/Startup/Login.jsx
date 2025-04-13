@@ -5,10 +5,12 @@ import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import toast, { Toaster } from "react-hot-toast";
 import LoginBgImg from "../../images/Global_bg.avif";
 import { api } from '../../api';
+import Loading from "../Specials/Loading";
 
 export default function Login() {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [logindata, setlogindata] = useState({
         email: "",
@@ -26,13 +28,13 @@ export default function Login() {
     const SubmitLogin = async (e) => {
         e.preventDefault();
 
+        //Ensure the loading function happens before the login authentication
+        setLoading(true);
+
         try {
             const response = await axios.post(`${api}/auth/login`, logindata);
 
-            toast.success("Login Successful!");
-
             const { token, user } = response.data;
-            
 
             console.log("The JWT token is: ", token);
             console.log("The user data is: ", user);
@@ -41,20 +43,26 @@ export default function Login() {
             localStorage.setItem('token', token);
             localStorage.setItem('role', user.role);
             localStorage.setItem('email', user.email);
+            
+            localStorage.setItem('id', user.id);
+
+            //display the successfull login message as a toast message
+            toast.success("Login Successful!");
 
             // Redirect based on the role
             setTimeout(() => {
                 switch (user.role) {
                     case "Admin":
-                        navigate('/admindashboard');
+                        navigate('/admin-dashboard');
                         break;
                     case "user":
-                        navigate('/userdashboard')
+                        navigate('/user-content')
                         break;
                     default:
+                        toast.error("Unauthorized role!");
                         break;
                 }
-            }, 1500)
+            }, 2000)
 
         } catch (error) {
             // Temporarily change background opacity on error
@@ -115,10 +123,14 @@ export default function Login() {
                             </div>
                             <div className="flex justify-center">
                                 <button className="w-full h-12 text-xl mt-5 py-2 px-10 rounded-lg text-white duration-300 bg-indigo-700 hover:ring-1 hover:bg-indigo-600 ring-indigo-700 font-bold font-serif">
-                                    Log In
+                                    {loading ? (
+                                        <div className="flex justify-center items-center">
+                                            <Loading />
+                                        </div>
+                                    ) : "Log In"}
                                 </button>
                             </div>
-                            <p className="font-normal text-gray-600 flex justify-center items-center mt-1">Don't have and account yet?
+                            <p className="font-normal text-gray-600 flex justify-center items-center mt-1">Don't have an account yet?
                                 <a href="/create-account" className="text-indigo-600 font-semibold ml-1 hover:underline">Create Account</a>
                             </p>
                         </form>
