@@ -5,9 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import CountryLogo from "../../images/CountryLogo.png";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
+import Profile from '../Specials/Profile';
 
 export default function NavBar() {
     const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+    const [openProfile, setOpenProfile] = useState(false);
     const searchInputRef = useRef(null);
     const navigate = useNavigate(); // For navigation
 
@@ -47,6 +49,10 @@ export default function NavBar() {
             document.removeEventListener('keydown', handleEscape);
         };
     }, [isSearchExpanded]);
+
+    const OpenProfile = () => {
+        setOpenProfile(!openProfile);
+    }
 
     return (
         <nav className="border-b-[2px] border-gray-300 px-28 py-3 flex bg-lme-300 font-semibold">
@@ -91,9 +97,12 @@ export default function NavBar() {
                 </div>
 
                 {/* Profile Icon */}
-                <div className="cursor-pointer">
+                <div className="cursor-pointer" onClick={OpenProfile}>
                     <FaUser className="text-indigo-600 hover:text-indigo-800 transition-colors duration-200" size={30} />
                 </div>
+                {openProfile && (
+                        <Profile closePopup={setOpenProfile} />
+                )}
 
                 {/* Logout Icon */}
                 <div className="cursor-pointer" onClick={handleLogout}>
