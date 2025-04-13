@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaUser } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
-import { AnimatePresence, motion } from "framer-motion";
 import CountryLogo from "../../images/CountryLogo.png";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom"; // Assuming you're using React Router
-import Profile from '../Specials/Profile';
+import Profile from './Profile';
 
 export default function NavBar() {
     const [isSearchExpanded, setIsSearchExpanded] = useState(false);
     const [openProfile, setOpenProfile] = useState(false);
     const searchInputRef = useRef(null);
     const navigate = useNavigate(); // For navigation
-
-    const toggleSearch = () => {
-        setIsSearchExpanded(!isSearchExpanded);
-    };
 
     const handleLogout = () => {
         // Clear user data (e.g., tokens, session storage, etc.)
@@ -106,7 +101,7 @@ export default function NavBar() {
 
                 {/* Logout Icon */}
                 <div className="cursor-pointer" onClick={handleLogout}>
-                    <MdLogout className="text-indigo-600 hover:text-indigo-800 transition-colors duration-200" size={30} />
+                    <MdLogout className="text-indigo-600 hover:text-indigo-800 transition-colors duration-200" size={35} />
                 </div>
             </div>
         </nav>

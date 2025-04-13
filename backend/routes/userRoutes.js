@@ -13,17 +13,17 @@ router.post('/create',[
   ],createUser) 
 
 //Get all users
-router.get('/users', protect, authorize('admin'), getAllUsers);
+router.get('/all-users', protect, authorize('admin'), getAllUsers);
 
 //Get a user by ID
 //this route can be accessed by both users and admins
-router.get('/get-user/:id', protect, authorize('admin'), getUserById);
+router.get('/get-user/:id', protect, getUserById);
 
 //Update a user's details
-router.put('/update-user/:id',protect, authorize('admin'), updateUser);
+router.put('/update-user/:id',protect, updateUser);
 
 //Delete a user
-router.delete('/delete-user/:id',protect, authorize('admin'), deleteUser);
+router.delete('/delete-user/:id',protect, deleteUser);
 
 
 module.exports = router;

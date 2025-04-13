@@ -43,28 +43,26 @@ export default function Login() {
             localStorage.setItem('token', token);
             localStorage.setItem('role', user.role);
             localStorage.setItem('email', user.email);
+            
+            localStorage.setItem('id', user.id);
 
+            //display the successfull login message as a toast message
+            toast.success("Login Successful!");
 
+            // Redirect based on the role
             setTimeout(() => {
-                
-                //display the successfull login message as a toast message
-                toast.success("Login Successful!");
-
-                // Redirect based on the role
-                setTimeout(() => {
-                    switch (user.role) {
-                        case "Admin":
-                            navigate('/admin-dashboard');
-                            break;
-                        case "user":
-                            navigate('/user-content')
-                            break;
-                        default:
-                            toast.error("Unauthorized role!");
-                            break;
-                    }
-                }, 2000)
-            }, 1000)
+                switch (user.role) {
+                    case "Admin":
+                        navigate('/admin-dashboard');
+                        break;
+                    case "user":
+                        navigate('/user-content')
+                        break;
+                    default:
+                        toast.error("Unauthorized role!");
+                        break;
+                }
+            }, 2000)
 
         } catch (error) {
             // Temporarily change background opacity on error
@@ -132,7 +130,7 @@ export default function Login() {
                                     ) : "Log In"}
                                 </button>
                             </div>
-                            <p className="font-normal text-gray-600 flex justify-center items-center mt-1">Don't have and account yet?
+                            <p className="font-normal text-gray-600 flex justify-center items-center mt-1">Don't have an account yet?
                                 <a href="/create-account" className="text-indigo-600 font-semibold ml-1 hover:underline">Create Account</a>
                             </p>
                         </form>

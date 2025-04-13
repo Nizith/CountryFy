@@ -1,7 +1,7 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ children, role }) => {
+const PrivateRoute = ({ role }) => {
     const token = localStorage.getItem("token");
     const userRole = localStorage.getItem("role");
 
@@ -15,9 +15,7 @@ const PrivateRoute = ({ children, role }) => {
         return <Navigate to="/" />; // Redirect to login if role doesn't match
     }
 
-    
-    console.log("This user is authenticated!")
-    return children; // Render the protected component if authenticated
+    return <Outlet />; // Render the nested route components
 };
 
 export default PrivateRoute;

@@ -17,23 +17,17 @@ function App() {
           <Route path="/create-account" element={<SignUp />} />
           <Route path="/load" element={<Loading />} />
           
-          {/* Protected Routes */}
-          <Route
-            path="/user-content"
-            element={
-              <PrivateRoute role="user">
-                <UserContent />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard"
-            element={
-              <PrivateRoute role="admin">
-                
-              </PrivateRoute>
-            }
-          />
+          {/* Protected Routes for Admin */}
+          <Route element={<PrivateRoute role="admin" />}>
+            <Route path="/admin-dashboard" element={<UserContent />} />
+          </Route>
+          
+          {/* Protected Routes for User */}
+          <Route element={<PrivateRoute role="user" />}>
+            <Route path="/user-content" element={<UserContent />} />
+          </Route>
+
+          
           
         </Routes>
     </Router>

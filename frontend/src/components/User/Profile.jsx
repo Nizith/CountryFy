@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api';
 import { AnimatePresence, motion } from 'framer-motion';
-import Loading from './Loading';
+import Loading from '../Specials/Loading';
 import { FaTrash, FaTimes } from 'react-icons/fa'; // Import icons
 import { MdEdit, MdOutlineDone } from 'react-icons/md';
 
