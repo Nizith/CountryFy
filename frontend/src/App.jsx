@@ -1,38 +1,58 @@
 import React from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Login from "./components/Startup/Login"
 import SignUp from "./components/Startup/SignUp"
 import Loading from "./components/Specials/Loading"
 import UserContent from "./components/User/UserContent"
 import PrivateRoute from "./components/Specials/PrivateRoute"
+import CountryName from "./components/User/CountryName"
+import NavBar from "./components/User/NavBar"
+import Footer from "./components/User/Footer"
+
+function AppContent({ children }) {
+  const location = useLocation();
+
+  // Define routes where NavBar and Footer should not be displayed
+  const excludedRoutes = ["/", "/create-account"];
+
+  const shouldShowNavBarAndFooter = !excludedRoutes.includes(location.pathname);
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {shouldShowNavBarAndFooter && <NavBar />}
+      <div className="flex-grow bg-gray-50 px-28">
+        {children}
+      </div>
+      {shouldShowNavBarAndFooter && <Footer />}
+    </div>
+  );
+}
 
 function App() {
   return (
     <>
       <Router>
-        <Routes>
+        <AppContent>
+          <Routes>
+            {/* First Pages */}
+            <Route path="/" element={<Login />} />
+            <Route path="/create-account" element={<SignUp />} />
 
-          {/* First Pages */}
-          <Route path="/" element={<Login />} />
-          <Route path="/create-account" element={<SignUp />} />
-          <Route path="/load" element={<Loading />} />
-          
-          {/* Protected Routes for Admin */}
-          <Route element={<PrivateRoute role="admin" />}>
-            <Route path="/admin-dashboard" element={<UserContent />} />
-          </Route>
-          
-          {/* Protected Routes for User */}
-          <Route element={<PrivateRoute role="user" />}>
-            <Route path="/user-content" element={<UserContent />} />
-          </Route>
+            {/* Protected Routes for Admin */}
+            <Route element={<PrivateRoute role="admin" />}>
+              <Route path="/admin-dashboard" element={<UserContent />} />
+            </Route>
 
-          
-          
-        </Routes>
-    </Router>
+            {/* Protected Routes for User */}
+            <Route element={<PrivateRoute role="user" />}>
+              <Route path="/user-content" element={<UserContent />} />
+              <Route path="/country/:name" element={<CountryName />} />
+            </Route>
+          </Routes>
+        </AppContent>
+      </Router>
     </>
   )
 }
 
-export default App
+export default App;
