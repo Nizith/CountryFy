@@ -2,12 +2,12 @@ import React from "react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Login from "./components/Startup/Login"
 import SignUp from "./components/Startup/SignUp"
-import Loading from "./components/Specials/Loading"
 import UserContent from "./components/User/UserContent"
 import PrivateRoute from "./components/Specials/PrivateRoute"
 import CountryName from "./components/User/CountryName"
 import NavBar from "./components/User/NavBar"
 import Footer from "./components/User/Footer"
+import Independants from "./components/User/Independants"
 
 function AppContent({ children }) {
   const location = useLocation();
@@ -20,7 +20,7 @@ function AppContent({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       {shouldShowNavBarAndFooter && <NavBar />}
-      <div className="flex-grow bg-gray-50 px-28">
+      <div className={`flex-grow ${shouldShowNavBarAndFooter ? "bg-gray-100" : ""}`}>
         {children}
       </div>
       {shouldShowNavBarAndFooter && <Footer />}
@@ -46,7 +46,8 @@ function App() {
             {/* Protected Routes for User */}
             <Route element={<PrivateRoute role="user" />}>
               <Route path="/user-content" element={<UserContent />} />
-              <Route path="/country/:name" element={<CountryName />} />
+              <Route path="/country-code/:name" element={<CountryName />} />
+              <Route path="/independants" element={<Independants />} />
             </Route>
           </Routes>
         </AppContent>

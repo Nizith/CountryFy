@@ -32,7 +32,7 @@ export default function FilterTab({ onRegionChange }) {
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 text-gray-800">
+        <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-gray-300 text-gray-800">
             <h2 className="text-xl font-semibold mb-6">Filter by</h2>
 
             {/* Category Filter */}
@@ -43,14 +43,14 @@ export default function FilterTab({ onRegionChange }) {
                 <div className="mt-3 space-y-2">
                     {data.map((region, index) => (
                         <div key={index}>
-                            <label className="block">
+                            <label className="inline-flex">
                                 <input
                                     type="checkbox"
-                                    className="mr-2"
+                                    className="mr-2 text-indigo-600"
                                     checked={selectedRegions.includes(region)}
                                     onChange={() => handleCheckboxChange(region)}
                                 />
-                                {region}
+                                <p className={selectedRegions.includes(region) ? "text-indigo-600" : ""}>{region}</p>
                             </label>
                         </div>
                     ))}
