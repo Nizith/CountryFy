@@ -122,10 +122,10 @@ export default function NavBar() {
 
                     {/* Navigation Links */}
                     <div className="flex space-x-4">
-                        <a href="/user-content" className="text-indigo-600 hover:text-indigo-800 text-xl">
+                        <a href="/user-content" className="text-indigo-600 hover:text-indigo-800 text-xl hover:underline ">
                             Home
                         </a>
-                        <a href="/Independants" className="text-indigo-600 hover:text-indigo-800 text-xl">
+                        <a href="/Independants" className="text-indigo-600 hover:text-indigo-800 text-xl hover:underline ">
                             Independants
                         </a>
                     </div>
@@ -149,7 +149,7 @@ export default function NavBar() {
                             <input
                                 ref={searchInputRef}
                                 type="text"
-                                placeholder="Search Countries..."
+                                placeholder="Search By Name..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onFocus={() => setIsFocused(true)} // Trigger animation on focus
@@ -199,11 +199,9 @@ export default function NavBar() {
                                             <button
                                                 className="font-semibold bg-indigo-200 hover:bg-indigo-300 text-indigo-800 border border-indigo-400 text-sm px-4 py-1 rounded-lg inline-flex cursor-pointer"
                                                 onMouseDown={(e) => e.preventDefault()} // Prevent blur when clicking the button
+                                                // filepath: c:\Works\MyGitWorks\af-2-Nizith\frontend\src\components\User\NavBar.jsx
                                                 onClick={() => {
-                                                    // Navigate to the country page
-                                                    navigate(`/country/${country.name.common}`, {
-                                                        state: { country },
-                                                    });
+                                                    navigate(`/country-code/${country.cca3}`);
 
                                                     // Refresh the page
                                                     window.location.reload();

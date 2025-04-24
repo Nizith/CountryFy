@@ -1,60 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import FilterTab from './FilterTab';
+import axios from 'axios';
 import CountryCard from '../Specials/CountryCard';
 
-export default function UserContent() {
-    const [data, setData] = useState([]); // All countries data
+export default function Independants() {
+    const [independentCountries, setIndependentCountries] = useState([]);
     const [filteredData, setFilteredData] = useState([]); // Filtered countries based on regions
-    const [sortedData, setSortedData] = useState([]); // Sorted and paginated data
-    const [sortOrder, setSortOrder] = useState("a-z");
+    const [sortedData, setSortedData] = useState([]); // Paginated data for the current page
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 30;
 
     useEffect(() => {
-        const fetchCountries = async () => {
+        const fetchIndependentCountries = async () => {
             try {
-                const response = await axios.get("https://restcountries.com/v3.1/all");
+                const response = await axios.get("https://restcountries.com/v3.1/independent?status=true");
                 const sorted = response.data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-                console.log("Fetched countries:", sorted); // Log the fetched countries
-                setData(sorted);
-                setFilteredData(sorted); // Initially, show all countries
-                setSortedData(sorted.slice(0, itemsPerPage)); // Display only the first 30 countries
+                setIndependentCountries(sorted);
+                setFilteredData(sorted); // Initially, show all independent countries
+                setSortedData(sorted.slice(0, itemsPerPage)); // Display only the first page
             } catch (error) {
-                console.error("Error fetching countries:", error);
+                console.error("Error fetching independent countries:", error);
             }
         };
 
-        fetchCountries();
+        fetchIndependentCountries();
     }, []);
 
     const handleRegionChange = (selectedRegions) => {
         if (selectedRegions.length === 0) {
-            setFilteredData(data); // If no regions are selected, show all countries
+            setFilteredData(independentCountries); // If no regions are selected, show all independent countries
         } else {
-            const filtered = data.filter(country =>
+            const filtered = independentCountries.filter(country =>
                 selectedRegions.some(region => country.continents.includes(region))
             );
             setFilteredData(filtered);
         }
         setCurrentPage(1); // Reset to the first page
-    };
-
-    const handleSortChange = (e) => {
-        const order = e.target.value;
-        setSortOrder(order);
-
-        let sorted = [...filteredData];
-        if (order === "a-z") {
-            sorted.sort((a, b) => a.name.common.localeCompare(b.name.common));
-        } else if (order === "z-a") {
-            sorted.sort((a, b) => b.name.common.localeCompare(a.name.common));
-        }
-
-        setFilteredData(sorted);
-        setCurrentPage(1); // Reset to the first page
-        setSortedData(sorted.slice(0, itemsPerPage)); // Update to show only the first 30 countries
     };
 
     const handlePageChange = (page) => {
@@ -87,34 +68,26 @@ export default function UserContent() {
 
     return (
         <>
+            <div className='text-center'>
+            <h2 className='mt-5 text-3xl font-semibold underline underline-offset-2 text-indigo-900'>Independant Countries</h2>
+            <p className='text-indigo-400'>This will show all the countries wich are Independant</p>
+            </div>
             <div className='flex justify-between gap-x-5 pt-10 px-28'>
                 <div className='w-1/4'>
                     <FilterTab onRegionChange={handleRegionChange} />
                 </div>
+
                 <div className='w-3/4'>
-                    <div className='flex justify-between mb-5'>
-                        <p>Showing {itemsPerPage} results on page {currentPage} of {totalPages}</p>
-                        <div>
-                            <select
-                                className='w-full border border-gray-300 rounded ps-3 pe-20 py-1'
-                                value={sortOrder}
-                                onChange={handleSortChange}
-                            >
-                                <option value="a-z">Sorted from A-Z</option>
-                                <option value="z-a">Sorted from Z-A</option>
-                            </select>
-                        </div>
-                    </div>
                     <div className='grid grid-cols-3 gap-4'>
-                        {sortedData.map((country, index) => (
-                            <CountryCard
-                                key={index}
-                                commonName={country.name.common}
-                                officialName={country.name.official}
-                                flagUrl={country.flags.png}
-                                countryData={country}
-                            />
-                        ))}
+                    {sortedData.map((country, index) => (
+                        <CountryCard
+                            key={index}
+                            commonName={country.name.common}
+                            officialName={country.name.official}
+                            flagUrl={country.flags.png}
+                            countryData={country}
+                        />
+                    ))}
                     </div>
                     <div className='flex justify-center my-5'>
                         {currentPage > 1 && (
