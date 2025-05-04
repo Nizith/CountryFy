@@ -20,7 +20,7 @@ function AppContent({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       {shouldShowNavBarAndFooter && <NavBar />}
-      <div className={`flex-grow ${shouldShowNavBarAndFooter ? "bg-gray-100" : ""}`}>
+      <div className={`flex-grow ${shouldShowNavBarAndFooter ? "bg-gray-50" : ""}`}>
         {children}
       </div>
       {shouldShowNavBarAndFooter && <Footer />}
