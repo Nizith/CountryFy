@@ -72,13 +72,13 @@ export default function Independants() {
             <h2 className='mt-5 text-3xl font-semibold underline underline-offset-2 text-indigo-900'>Independant Countries</h2>
             <p className='text-indigo-400'>This will show all the countries wich are Independant</p>
             </div>
-            <div className='flex justify-between gap-x-5 pt-10 px-28'>
-                <div className='w-1/4'>
+            <div className='pt-10 px-20'>
+                <div className='w-full mb-8'>
                     <FilterTab onRegionChange={handleRegionChange} />
                 </div>
 
-                <div className='w-3/4'>
-                    <div className='grid grid-cols-3 gap-4'>
+                <div className='w-full'>
+                    <div className='grid grid-cols-4 gap-4'>
                     {sortedData.map((country, index) => (
                         <CountryCard
                             key={index}

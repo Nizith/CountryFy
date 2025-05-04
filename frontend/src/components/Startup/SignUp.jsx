@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import toast, { Toaster } from "react-hot-toast";
 import LoginBgImg from "../../images/Signup_bg.avif";
-import { api } from '../../api';
 import Loading from "../Specials/Loading";
 
 export default function SignUp() {
@@ -17,14 +15,13 @@ export default function SignUp() {
         password: "",
         confirmPassword: ""
     });
-    const [passwordMatch, setPasswordMatch] = useState(false); // State to track if passwords match
+    const [passwordMatch, setPasswordMatch] = useState(false);
 
     const handleLoginChange = (l) => {
         const { name, value } = l.target;
         setSignupData(SignupData => {
             const updatedData = { ...SignupData, [name]: value };
 
-            // Check if passwords match when confirmPassword is updated
             if (name === "confirmPassword" || name === "password") {
                 setPasswordMatch(updatedData.password === updatedData.confirmPassword);
             }
@@ -35,58 +32,50 @@ export default function SignUp() {
 
     const SubmitRegistation = async (e) => {
         e.preventDefault();
-
-        //Ensure the loading function happens while the registration happens
         setLoading(true);
 
-        // Check if passwords match
         if (!passwordMatch) {
             toast.error("Passwords do not match!");
+            setLoading(false);
             return;
         }
 
         try {
-            const response = await axios.post(`${api}/auth/register`, {
+            // Check if email already exists
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const existingUser = users.find(user => user.email === SignupData.email);
+            
+            if (existingUser) {
+                toast.error("Email already exists!");
+                setLoading(false);
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now().toString(),
                 name: SignupData.name,
                 email: SignupData.email,
-                password: SignupData.password
-            });
+                password: SignupData.password,
+                role: 'user' // Default role
+            };
 
-            const { token, user } = response.data;
-
-            // Store the token and role in localStorage
-            localStorage.setItem('token', token);
-            localStorage.setItem('role', user.role);
-            localStorage.setItem('name', user.name);
-            localStorage.setItem('email', user.email);
+            // Add to users array
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
 
             setTimeout(() => {
-
-                //display the successfull message for account creation, as a toast message
                 toast.success("Your account created successfully!");
-
-                // Redirect based on the role
                 setTimeout(() => {
-                    switch (user.role) {
-                        case "Admin":
-                            navigate('/admin-dashboard');
-                            break;
-                        case "user":
-                            navigate('/user-content');
-                            break;
-                        default:
-                            break;
-                    }
-                }, 2000)
+                    navigate('/');
+                }, 2000);
             }, 1000);
 
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.message) {
-                toast.error(error.response.data.message); // Show backend error message
-            } else {
-                toast.error("Signup Failed. Please try again.");
-            }
+            toast.error("Signup Failed. Please try again.");
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
