@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import toast, { Toaster } from "react-hot-toast";
 import LoginBgImg from "../../images/Global_bg.avif";
-import { api } from '../../api';
 import Loading from "../Specials/Loading";
 
 export default function Login() {
-
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -27,26 +24,26 @@ export default function Login() {
 
     const SubmitLogin = async (e) => {
         e.preventDefault();
-
-        //Ensure the loading function happens before the login authentication
         setLoading(true);
 
         try {
-            const response = await axios.post(`${api}/auth/login`, logindata);
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === logindata.email && u.password === logindata.password);
 
-            const { token, user } = response.data;
+            if (!user) {
+                toast.error("Invalid credentials!");
+                setLoading(false);
+                return;
+            }
 
-            console.log("The JWT token is: ", token);
-            console.log("The user data is: ", user);
-
-            // Store the token and role in localStorage
-            localStorage.setItem('token', token);
+            // Store user data in localStorage
+            localStorage.setItem('token', 'dummy-token-' + Date.now()); // Simulate a token
             localStorage.setItem('role', user.role);
             localStorage.setItem('email', user.email);
-            
             localStorage.setItem('id', user.id);
+            localStorage.setItem('name', user.name);
 
-            //display the successfull login message as a toast message
             toast.success("Login Successful!");
 
             // Redirect based on the role
@@ -62,12 +59,13 @@ export default function Login() {
                         toast.error("Unauthorized role!");
                         break;
                 }
-            }, 2000)
+            }, 2000);
 
         } catch (error) {
-            // Temporarily change background opacity on error
-            toast.error("Login Failed. Invalid credentials!");
+            toast.error("Login Failed. Please try again!");
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 

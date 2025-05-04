@@ -10,7 +10,6 @@ export default function FilterTab({ onRegionChange }) {
             try {
                 const response = await axios.get("https://restcountries.com/v3.1/all");
                 const countries = response.data;
-
                 // Extract and deduplicate region names
                 const regions = [...new Set(countries.flatMap(country => country.continents))];
                 setData(regions);
@@ -18,43 +17,52 @@ export default function FilterTab({ onRegionChange }) {
                 console.error("Error fetching countries:", error);
             }
         };
-
         fetchCountries();
     }, []);
 
-    const handleCheckboxChange = (region) => {
-        const updatedRegions = selectedRegions.includes(region)
-            ? selectedRegions.filter(r => r !== region)
-            : [...selectedRegions, region];
-
+    const toggleRegionSelection = (region) => {
+        const isSelected = selectedRegions.includes(region);
+        let updatedRegions;
+        
+        if (isSelected) {
+            // Remove region from selection
+            updatedRegions = selectedRegions.filter(r => r !== region);
+        } else {
+            // Add region to selection
+            updatedRegions = [...selectedRegions, region];
+        }
+        
         setSelectedRegions(updatedRegions);
-        onRegionChange(updatedRegions); // Notify parent about the change
+        onRegionChange(updatedRegions); // Notify parent
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-gray-300 text-gray-800">
-            <h2 className="text-xl font-semibold mb-6">Filter by</h2>
-
-            {/* Category Filter */}
-            <div className="mb-4">
-                <div className="flex justify-between items-center border-b pb-2">
-                    <span className="font-medium">Region</span>
-                </div>
-                <div className="mt-3 space-y-2">
-                    {data.map((region, index) => (
-                        <div key={index}>
-                            <label className="inline-flex">
-                                <input
-                                    type="checkbox"
-                                    className="mr-2 text-indigo-600"
-                                    checked={selectedRegions.includes(region)}
-                                    onChange={() => handleCheckboxChange(region)}
-                                />
-                                <p className={selectedRegions.includes(region) ? "text-indigo-600" : ""}>{region}</p>
-                            </label>
+        <div className="bg-white w-full py-4 px-6 rounded-lg border-2 border-gray-300 text-gray-800">
+            <div className="flex justify-between items-center gap-2">
+                {data.map((region, index) => {
+                    const isSelected = selectedRegions.includes(region);
+                    
+                    return (
+                        <div 
+                            key={index}
+                            className={`
+                                cursor-pointer rounded-full px-10 py-1 transition-all
+                                ${isSelected 
+                                    ? 'bg-indigo-800 text-indigo-200 font-medium' 
+                                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                                }
+                            `}
+                            onClick={() => toggleRegionSelection(region)}
+                        >
+                            <div className={`${isSelected ? 'inline-flex pt-1' : ''}`}>
+                                <span>{region}</span>
+                                {isSelected && (
+                                    <span className="ml-2 text-xl text-indigo-200">×</span>
+                                )}
+                            </div>
                         </div>
-                    ))}
-                </div>
+                    );
+                })}
             </div>
         </div>
     );

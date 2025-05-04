@@ -87,11 +87,11 @@ export default function UserContent() {
 
     return (
         <>
-            <div className='flex justify-between gap-x-5 pt-10 px-28'>
-                <div className='w-1/4'>
+            <div className='pt-10 px-20'>
+                <div className='w-full mb-8'>
                     <FilterTab onRegionChange={handleRegionChange} />
                 </div>
-                <div className='w-3/4'>
+                <div className='w-full'>
                     <div className='flex justify-between mb-5'>
                         <p>Showing {itemsPerPage} results on page {currentPage} of {totalPages}</p>
                         <div>
@@ -105,7 +105,7 @@ export default function UserContent() {
                             </select>
                         </div>
                     </div>
-                    <div className='grid grid-cols-3 gap-4'>
+                    <div className='grid grid-cols-4 gap-4'>
                         {sortedData.map((country, index) => (
                             <CountryCard
                                 key={index}
