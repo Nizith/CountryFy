@@ -1,0 +1,221 @@
+[33mcommit 68cf38a74075be901ff850a9fbb7a8d21d2f0b01[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon May 5 06:48:25 2025 +0530
+
+    new tailwind
+
+[33mcommit 00fc61d995ad9579ab4551cc09433da759569000[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: f69464a e53156f
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Mon May 5 04:33:38 2025 +0530
+
+    Merge pull request #8 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    changes
+
+[33mcommit e53156f46c12083257112609c579cca3e6fb0d54[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon May 5 04:30:36 2025 +0530
+
+    changes
+
+[33mcommit f69464a76706e2c755966554a7de3bf87cdc3dde[m
+Merge: 5f939c6 8830be4
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Mon May 5 00:24:17 2025 +0530
+
+    Merge pull request #7 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit 8830be4f8c19689d37b9ab61e081df277dc79d10[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon May 5 00:22:05 2025 +0530
+
+    test files configured
+
+[33mcommit d316ad7b3d62b5541a80f72c1497ba439519fac4[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon May 5 00:21:47 2025 +0530
+
+    tests added
+
+[33mcommit 1231fb00ba3830a6ec31d681b1d3c279601eb15a[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon May 5 00:21:35 2025 +0530
+
+    changes added
+
+[33mcommit 5f939c61e98a6dd359688458ce84f520a8853f49[m
+Merge: c5d0d27 c52c1fd
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Thu Apr 24 12:47:07 2025 +0530
+
+    Merge pull request #6 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit c52c1fdd51ddaeafda811a82b0b6fe4a69449494[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Thu Apr 24 12:44:54 2025 +0530
+
+    Country details data dsplay configured with card approach
+
+[33mcommit 5fffbcee532b002e2fc5e6281029b6fa8f412aa3[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Thu Apr 24 12:43:50 2025 +0530
+
+    independant countries component completed with some UI updates
+
+[33mcommit c5d0d27d819968816243068e8c65f22b381cb2e1[m
+Merge: 61671f5 a97cb8d
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Tue Apr 15 16:36:20 2025 +0530
+
+    Merge pull request #5 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit a97cb8d8aa1ea348a19a7c7a3a5edad36e726958[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Tue Apr 15 16:34:45 2025 +0530
+
+    main content with all the countries with asc and desc order partially completed
+
+[33mcommit bd4ce7135ca857438c33538d16e15517dfbab396[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Tue Apr 15 16:33:49 2025 +0530
+
+    Filter countries according to the checked region completed
+
+[33mcommit 75c468d6b1119f8826ed981bb2dff421c28e7e33[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Tue Apr 15 16:32:59 2025 +0530
+
+    searched country details display initiated with proper system alignments
+
+[33mcommit bed237341e03c069bcfff13125cff72a85749101[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Tue Apr 15 16:32:01 2025 +0530
+
+    Search option completed
+
+[33mcommit 61671f574ea50e36e778e147b114b2b95c2adfaa[m
+Merge: a003fc6 693a2f3
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Sun Apr 13 17:20:12 2025 +0530
+
+    Merge pull request #4 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit 693a2f322ffa43ce0c8137e2c70b40fca42698cb[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 13 17:19:22 2025 +0530
+
+    user content page partially implemented
+
+[33mcommit 1cda82ddcbf635d532cd565fb78713fe38888a99[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 13 17:10:52 2025 +0530
+
+    Authorization configured correctly
+
+[33mcommit 66eaf68745ebb91cde68bdf4d32d1846b0a5f7c0[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 13 16:15:31 2025 +0530
+
+    User profile completed with all functions
+
+[33mcommit 0eb8856bfbfa52a663e2ede7109cab14f364728b[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 13 16:14:51 2025 +0530
+
+    Navbar and the footer completed with font and animation
+
+[33mcommit eb5c9f4ffe290b95776943a91b39f962f8403672[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sat Apr 12 09:20:10 2025 +0530
+
+    Authentication and authorization completed
+
+[33mcommit a003fc6e704217693094d67c2eb520baa374e796[m
+Merge: 9a0c38d 07e2bfc
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Tue Apr 8 07:50:04 2025 +0530
+
+    Merge pull request #3 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit 07e2bfc40a2e5b638302579d3dfb83a5391c29dd[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Tue Apr 8 07:48:27 2025 +0530
+
+    completed the signup scenario successfully
+
+[33mcommit c48c0e937d91a319352442aaa9583f5a36a13c5f[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon Apr 7 08:37:51 2025 +0530
+
+    ensure the .env file not push to the remote repo
+
+[33mcommit 65b416971aefcc325be3110911af2895903a84c8[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Mon Apr 7 08:22:14 2025 +0530
+
+    Login functionality fully completed with frontend UI and backend
+
+[33mcommit 9a0c38d10d536db102e3aa38ee4ba41002e8bf22[m
+Merge: c2d2e5e dfbb82a
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Sun Apr 6 00:42:23 2025 +0530
+
+    Frontend initialization pull request
+    
+    Dev
+
+[33mcommit dfbb82a5138e1385f34ca36701f9e7e900a9e07d[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 6 00:33:35 2025 +0530
+
+    Frontend is configured with tailwindcss CSS framwork
+
+[33mcommit 6377b6d432c7191d49395225576e304296d8bccf[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sun Apr 6 00:32:01 2025 +0530
+
+    React frontend configred intially
+
+[33mcommit c2d2e5e536a8f32082425bbdb8b85fe9d1398d51[m
+Merge: 6974b7f 85200f2
+Author: Nisitha Lakshan Dassanayake <127546048+Nizith@users.noreply.github.com>
+Date:   Sat Apr 5 14:05:18 2025 +0530
+
+    Merge pull request #1 from SE1020-IT2070-OOP-DSA-25/dev
+    
+    Dev
+
+[33mcommit 85200f2a6e9be229fc6f5e3dbd2e8184f801adc5[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sat Apr 5 14:04:38 2025 +0530
+
+    user management part done
+
+[33mcommit fcc671f2cc3ef1e762017bd1ffd1e79a83cfd9eb[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sat Apr 5 14:04:22 2025 +0530
+
+    auth functions completed
+
+[33mcommit 82e2bb0b0c694aa934bf0d0b312822861d29a609[m
+Author: Nizith <nisithalakshan94@gmail.com>
+Date:   Sat Apr 5 14:01:03 2025 +0530
+
+    backend is configured
+
+[33mcommit 6974b7f35828ea4461e6069b70f5bf2a7e54f2bc[m[33m ([m[1;32mmain[m[33m)[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Sat Apr 5 05:56:25 2025 +0000
+
+    add deadline
